@@ -5,6 +5,7 @@ import org.example.dbconnect.DbConnection;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Types;
 import java.util.Scanner;
 
 public class Example5 {
@@ -18,19 +19,18 @@ public class Example5 {
 
         System.out.print("Enter Age: ");
         int age = sc.nextInt();
-
-        try {
+       try {
             Connection con = DbConnection.takeConnection();
 
-            CallableStatement ps = con.prepareCall("{call insertPerson(?,?,?)}");
+           CallableStatement ps = con.prepareCall("{call insertPerson(?,?,?)}");
 
-            ps.setString(1,name);
-            ps.setString(2,loc);
-            ps.setInt(3,age);
-            ps.execute();
+           ps.setString(1,name);
+           ps.setString(2,loc);
+           ps.setInt(3,age);
+           ps.execute();
 
-            System.out.println("Record inserted");
-            con.close();
+           System.out.println("Record inserted");
+           con.close();
         }
         catch (Exception e)
         {
